@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <testsuites tests="0" disabled="0" errors="0" failures="0" time="0.006792">
-      <testsuite name="magefiles" package="/Users/adam/Documents/Projects/github.com/crewlinker/cedar/magefiles" tests="0" disabled="0" skipped="0" errors="0" failures="0" time="0.006792" timestamp="2024-04-05T10:58:34">
+  <testsuites tests="1" disabled="0" errors="0" failures="0" time="0.021401">
+      <testsuite name="cedar" package="/Users/adam/Documents/Projects/github.com/crewlinker/cedar" tests="1" disabled="0" skipped="0" errors="0" failures="0" time="0.015104" timestamp="2024-04-05T11:50:49">
           <properties>
               <property name="SuiteSucceeded" value="true"></property>
               <property name="SuiteHasProgrammaticFocus" value="false"></property>
               <property name="SpecialSuiteFailureReason" value=""></property>
               <property name="SuiteLabels" value="[]"></property>
-              <property name="RandomSeed" value="1712307513"></property>
+              <property name="RandomSeed" value="1712310645"></property>
+              <property name="RandomizeAllSpecs" value="true"></property>
+              <property name="LabelFilter" value=""></property>
+              <property name="FocusStrings" value=""></property>
+              <property name="SkipStrings" value=""></property>
+              <property name="FocusFiles" value=""></property>
+              <property name="SkipFiles" value=""></property>
+              <property name="FailOnPending" value="true"></property>
+              <property name="FailFast" value="false"></property>
+              <property name="FlakeAttempts" value="0"></property>
+              <property name="DryRun" value="false"></property>
+              <property name="ParallelTotal" value="7"></property>
+              <property name="OutputInterceptorMode" value=""></property>
+          </properties>
+          <testcase name="[It] Cedar should run some wasm code" classname="cedar" status="passed" time="0.005250958">
+              <system-out>map[]&#xA;</system-out>
+              <system-err>&gt; Enter [It] should run some wasm code - /Users/adam/Documents/Projects/github.com/crewlinker/cedar/cedar_test.go:25 @ 04/05/24 11:50:49.347&#xA;&lt; Exit [It] should run some wasm code - /Users/adam/Documents/Projects/github.com/crewlinker/cedar/cedar_test.go:25 @ 04/05/24 11:50:49.351 (4ms)&#xA;&gt; Enter [DeferCleanup (Each)] Cedar - /Users/adam/Documents/Projects/github.com/crewlinker/cedar/cedar_test.go:27 @ 04/05/24 11:50:49.352&#xA;&lt; Exit [DeferCleanup (Each)] Cedar - /Users/adam/Documents/Projects/github.com/crewlinker/cedar/cedar_test.go:27 @ 04/05/24 11:50:49.352 (0s)&#xA;</system-err>
+          </testcase>
+      </testsuite>
+      <testsuite name="magefiles" package="/Users/adam/Documents/Projects/github.com/crewlinker/cedar/magefiles" tests="0" disabled="0" skipped="0" errors="0" failures="0" time="0.006297" timestamp="2024-04-05T11:50:51">
+          <properties>
+              <property name="SuiteSucceeded" value="true"></property>
+              <property name="SuiteHasProgrammaticFocus" value="false"></property>
+              <property name="SpecialSuiteFailureReason" value=""></property>
+              <property name="SuiteLabels" value="[]"></property>
+              <property name="RandomSeed" value="1712310645"></property>
               <property name="RandomizeAllSpecs" value="true"></property>
               <property name="LabelFilter" value=""></property>
               <property name="FocusStrings" value=""></property>

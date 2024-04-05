@@ -6,6 +6,7 @@ require (
 	github.com/magefile/mage v1.15.0
 	github.com/onsi/ginkgo/v2 v2.17.1
 	github.com/onsi/gomega v1.32.0
+	github.com/tetratelabs/wazero v1.7.0
 )
 
 require (

@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/magefile/mage/mg"
@@ -30,6 +31,34 @@ func (Dev) Lint() error {
 // Test tests all the code using Gingo, with an empty label filter.
 func (Dev) Test() error {
 	return (Dev{}).TestSome("")
+}
+
+// Build the binary components.
+func (Dev) Build() error {
+	if err := sh.Run("cargo", "build",
+		"--manifest-path=cedarwasm/Cargo.toml",
+		"--target=wasm32-unknown-unknown",
+		"--release"); err != nil {
+		return fmt.Errorf("failed to build rust wasm: %w", err)
+	}
+
+	if err := sh.Copy(
+		filepath.Join("cedarwasm", "cedar.wasm"),
+		filepath.Join("cedarwasm", "target", "wasm32-unknown-unknown", "release", "cedar.wasm"),
+	); err != nil {
+		return fmt.Errorf("failed to copy wasm: %w", err)
+	}
+
+	return nil
+}
+
+// BuildAndTest will build any binary components and run all the tests.
+func (Dev) BuildAndTest() error {
+	if err := (Dev{}).Build(); err != nil {
+		return err
+	}
+
+	return (Dev{}).Test()
 }
 
 // TestSome tests the whole repo using Ginkgo test runner with label filters applied.
