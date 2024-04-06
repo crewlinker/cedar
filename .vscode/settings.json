@@ -22,6 +22,7 @@
   "go.lintFlags": [],
   "go.useLanguageServer": true,
   "editor.rulers": [120],
+  "editor.inlayHints.enabled": "offUnlessPressed",
   "gopls": {
     "formatting.gofumpt": true,
     "ui.semanticTokens": true,

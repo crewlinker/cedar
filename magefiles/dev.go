@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
+	"github.com/samber/lo"
 )
 
 // init performs some sanity checks before running anything.
@@ -35,13 +37,24 @@ func (Dev) Test() error {
 
 // Build the binary components.
 func (Dev) Build() error {
-	if err := sh.Run("cargo", "build",
+	// On mac, the LLVM compiler we need to use needs to be installed with Homebrew (brew install llvm)
+	// and specified in the environment variables.
+	cargoEnv := map[string]string{}
+	if runtime.GOOS == "darwin" {
+		llvm := lo.Must(sh.Output("brew", "--prefix", "llvm"))
+		cargoEnv["AR"] = filepath.Join(llvm, "bin", "llvm-ar")
+		cargoEnv["CC"] = filepath.Join(llvm, "bin", "clang")
+	}
+
+	// then we can call cargo build, with our custom llvm path.
+	if err := sh.RunWith(cargoEnv, "cargo", "build",
 		"--manifest-path=cedarwasm/Cargo.toml",
 		"--target=wasm32-unknown-unknown",
 		"--release"); err != nil {
 		return fmt.Errorf("failed to build rust wasm: %w", err)
 	}
 
+	// copy the result so we can embed it in the go File.
 	if err := sh.Copy(
 		filepath.Join("cedarwasm", "cedar.wasm"),
 		filepath.Join("cedarwasm", "target", "wasm32-unknown-unknown", "release", "cedar.wasm"),
